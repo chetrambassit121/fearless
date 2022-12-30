@@ -1,8 +1,0 @@
-docker-compose up 
-docker-compose run --rm web python manage.py makemigrations
-docker-compose run --rm web python manage.py migrate
-docker-compose run --rm web python manage.py runserver
-docker-compose run --rm web pip install ... 
-docker ps -aqf "name=fearless"    
-docker exec -it 6c91c6fd6101 python manage.py createsuperuser
-docker-compose run --rm web pip freeze > requirements.txt
