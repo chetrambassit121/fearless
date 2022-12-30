@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from items.models import Item
+from items.serializers import ItemSerializer
 from rest_framework import generics
-from snippets.serializers import UserSerializer
+from items.serializers import UserSerializer
 from rest_framework import permissions
-from snippets.permissions import IsOwnerOrReadOnly
+from items.permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -21,7 +21,7 @@ from rest_framework import status
 def api_root(request, format=None):
     return Response({
         'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format)
+        'items': reverse('item-list', request=request, format=format)
     })
 
 
@@ -33,22 +33,22 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
 
-class SnippetViewSet(viewsets.ModelViewSet):
+class ItemViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
 
-    Snippet List DELETE removes all snippets
-    Snippet Instance DELETE removes that specfic snippet
+    Item List DELETE removes all items
+    Item Instance DELETE removes that specfic item
     """
-    queryset = Snippet.objects.all()
-    serializer_class = SnippetSerializer
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
     permission_classes = [AllowAny]
 
     def delete(self, request, format=None):
-        snippets = Snippet.objects.all()
-        if snippets:
-            snippets.delete()
+        items = Item.objects.all()
+        if items:
+            items.delete()
             return JsonResponse({"status":"ok"}, status=status.HTTP_200_OK)
         return JsonResponse(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 

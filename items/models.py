@@ -10,7 +10,7 @@ LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
 STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 
-class Snippet(models.Model):
+class Item(models.Model):
     # owner = models.ForeignKey('auth.User', related_name='snippets', default='admin', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False, default='')
     # highlighted = models.TextField()

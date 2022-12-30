@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third-party apps
-    'snippets',
+    'items',
     'rest_framework',
     'pygments',
 ]
