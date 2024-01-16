@@ -46,8 +46,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
 
     def delete(self, request, format=None):
-        items = Item.objects.all()
-        if items:
+        if items := Item.objects.all():
             items.delete()
             return JsonResponse({"status":"ok"}, status=status.HTTP_200_OK)
         return JsonResponse(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
